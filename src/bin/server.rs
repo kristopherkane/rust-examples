@@ -7,6 +7,8 @@ fn main() {
     let listener = TcpListener::bind("0.0.0.0:5000").unwrap();
     for stream in listener.incoming() {
         match stream {
+            //Change this to a thread pool next
+            //Reject connections if the pool is full
             Ok(stream) => {
                 thread::spawn(move || {
                     connection_request(stream)
